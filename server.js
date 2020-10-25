@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require('mongoose');
-const config = require("./config/database")
+const config = require("./config/database");
+const passport = require('passport');
 
 const app = express();
 
@@ -24,15 +25,24 @@ app.use(bodyparser.json());
 // express static folder
 //app.use(express.static(path.join(__dirname, ('public'))));
 
+
+// passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')(passport);
+
+
 // Routes
 app.get('/',(req,res) => {
     res.send("hello");
 })
 
-app.use("/QA",require('./routes/queans'));
-app.use("/user",require('./routes/userPost'));
+//app.use("/QA",require('./routes/queans'));
+//app.use("/user",require('./routes/userPost'));
 
-
+app.use("/auth",require("./routes/auth"))
+app.use("/QA",require("./routes/question"))
 
 
 
