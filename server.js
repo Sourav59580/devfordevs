@@ -3,6 +3,7 @@ const bodyparser = require("body-parser");
 const mongoose = require('mongoose');
 const config = require("./config/database");
 const passport = require('passport');
+const cors = require('cors');
 
 const app = express();
 
@@ -18,6 +19,8 @@ mongoose.connect(config.database, {
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
+// use of cors
+app.use(cors())
 
 // body-parser middleware use
 app.use(bodyparser.json());

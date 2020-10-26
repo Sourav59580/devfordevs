@@ -38,8 +38,6 @@ router.post("/postAnswer",(req,res)=>{
      .catch((err)=>{
          console.log(err);
      })
- 
-
 
 })
 

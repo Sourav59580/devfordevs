@@ -3,6 +3,22 @@ const router = express.Router();
 const config = require("../config/database");
 const Question = require("../models/question");
 
+//@type    GET
+//$route   /QA/getQueAns
+//$desc    router for geting all questions and answers.
+//@access  private
+router.get("/getQueAns",(req,res)=>{
+    Question.find()
+    .then(result =>{
+        console.log(result);
+        res.json({response:result});
+    })
+    .catch(err => {
+        console.log(err);
+        res.json({success:false,msg: "Something went wrong"});
+    })
+})
+
 
 //@type    POST
 //$route   /QA/addQuestion
