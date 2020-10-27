@@ -16,26 +16,26 @@
       <li class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a href="#" routerLink="/developers" class="nav-link font-15">Our Developers</a>
       </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/login" class="btn btn-primary mx-1 rounded">Login</a>
+      <li *ngIf="!isLogin()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a  routerLink="/login" class="btn btn-primary mx-1 rounded">Login</a>
       </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li *ngIf="!isLogin()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a routerLink="/register" class="btn btn-warning mx-1 rounded">Sign up</a>
       </li>
-      <li class="mt-2 mr-2 text-dark d-none">
-        <h6 class="font-15 p-0 m-0">Sourav Santra</h6>
+      <li class="mt-2 mr-2 text-dark" *ngIf="isLogin()">
+        <h6 class="font-15 p-0 m-0">{{ user.name }}</h6>
       </li>
-      <li class="nav-item dropdown mr-2 d-none">
+      <li class="nav-item dropdown mr-2" *ngIf="isLogin()">
         <div class="d-flex">
-          <div class="profile rounded-circle cursor-pointer" data-toggle="dropdown"><img
-              src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
+          <div class="profile rounded-circle cursor-pointer border" data-toggle="dropdown"><img
+              src="{{ user.dp }}"
               width="40px" class="rounded-circle"></div>
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#">View profile</a>
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" (click)="onLogoutClick()">Logout</a>
           </div>
         </div>
       </li>

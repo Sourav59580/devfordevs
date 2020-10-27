@@ -7,7 +7,7 @@ import { QueAnsComponent } from './components/que-ans/que-ans.component';
 import { RegisterComponent } from "./components/register/register.component";
 import { LoginComponent } from "./components/login/login.component"
 
-
+import { AuthGuardService as AuthGuard} from "./services/auth-guard.service";
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},

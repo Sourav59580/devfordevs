@@ -1,9 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+
+// Flash message
+import { ToastModule } from 'ng-uikit-pro-standard';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Services
 import { QueAnsService } from "./services/que-ans.service";
+import { AuthService } from "./services/auth.service";
 
 
 // Components
@@ -36,10 +43,16 @@ import { LoginComponent } from './components/login/login.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ToastModule.forRoot(),
+    FlashMessagesModule.forRoot(),
   ],
   providers: [
     QueAnsService,
+    AuthService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
