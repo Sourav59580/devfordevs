@@ -6,15 +6,17 @@ import { DevelopersComponent } from './components/developers/developers.componen
 import { QueAnsComponent } from './components/que-ans/que-ans.component';
 import { RegisterComponent } from "./components/register/register.component";
 import { LoginComponent } from "./components/login/login.component"
+import { UnknownComponent } from "./components/unknown/unknown.component";
 
 import { AuthGuardService as AuthGuard} from "./services/auth-guard.service";
 
 const routes: Routes = [
-  {path: "home", component: HomeComponent},
-  {path: "developers", component: DevelopersComponent},
-  {path: "QueAns", component: QueAnsComponent},
+  {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
-  {path: "login", component: LoginComponent}
+  {path: "", component: HomeComponent,canActivate:[AuthGuard]},
+  {path: "developers", component: DevelopersComponent,canActivate:[AuthGuard]},
+  {path: "QueAns", component: QueAnsComponent,canActivate:[AuthGuard]},
+  {path: "**", component:UnknownComponent}
 ];
 
 @NgModule({

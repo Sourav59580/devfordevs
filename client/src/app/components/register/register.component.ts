@@ -51,8 +51,6 @@ export class RegisterComponent implements OnInit {
       googleLink: this.googleLink
     }
 
-
-
     // Register
     this._AuthService.registerUser(user).subscribe(data =>{
       if(data.success){

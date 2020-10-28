@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../services/auth.service";
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 // Services
 import { QueAnsService } from "../../services/que-ans.service";
@@ -10,24 +12,52 @@ import { QueAnsService } from "../../services/que-ans.service";
 })
 export class QueAnsComponent implements OnInit {
   questions: any[] = [];
+  question: String;
+  description: String;
+  tags: any = [];
+  user: any;
 
-  constructor(private _QueAnsService: QueAnsService) { }
+  public reactionUpdate;
+
+
+  constructor(
+    private _QueAnsService: QueAnsService,
+    private _AuthService: AuthService,
+    private _flashMessagesService: FlashMessagesService,
+  ) { }
 
   ngOnInit() {
 
     // Get all questions and answers
-    this._QueAnsService.getQuestionsAnswers().subscribe(res =>{
+    this._QueAnsService.getQuestionsAnswers().subscribe(res => {
       console.log(res)
-      this.questions= res
-    },err =>{
+      this.questions = res
+    }, err => {
       console.log(err);
       return false;
     })
 
   }
+ 
+  // set in ques anns
+  public setQuesAns(){
+      // Get all questions and answers
+    this._QueAnsService.getQuestionsAnswers().subscribe(res => {
+      console.log(res)
+      this.questions = res
+    }, err => {
+      console.log(err);
+      return false;
+    })
+  }
+
+  // send child data in parent
+  setInParent(res){
+    console.log(res);
+  }
 
   // claculate date diffrence
-  calculateDiff(data){
+  calculateDiff(data) {
 
     let date = new Date(data);
     let currentDate = new Date();
@@ -35,5 +65,75 @@ export class QueAnsComponent implements OnInit {
     let days = Math.floor((currentDate.getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
     return days;
   }
+
+  onSelect(event) {
+
+  }
+  onEnter(event) {
+    console.log(this.tags);
+  }
+
+  askQuestion() {
+    this.user = this._AuthService.getUserData();
+    this.user = JSON.parse(this.user);
+
+    const question = {
+      authorName: this.user.name,
+      authorDesignation: this.user.designation,
+      authorPicture: this.user.dp,
+      authorId: this.user.id,
+      question: this.question,
+      description: this.description,
+      tags: this.tags
+    }
+
+    this._QueAnsService.askQuestion(question).subscribe(res => {
+      if (res.success) {
+        // Get all questions and answers
+        this._QueAnsService.getQuestionsAnswers().subscribe(res => {
+          console.log(res)
+          this.questions = res
+        }, err => {
+          console.log(err);
+          return false;
+        })
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-success' });
+      }else{
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-danger' });
+      }
+    })
+  }
+
+  // send answer
+  sendAnswer(id,ans){
+    this.user = this._AuthService.getUserData();
+    this.user = JSON.parse(this.user);
+    const answer = {
+      questionId:id,
+      userName: this.user.name,
+      userDesignation: this.user.designation,
+      userPicture: this.user.dp,
+      answer: ans
+    }
+
+    this._QueAnsService.addAnswer(answer).subscribe(res => {
+      if (res.success) {
+        // Get all questions and answers
+        this._QueAnsService.getQuestionsAnswers().subscribe(res => {
+          console.log(res)
+          this.questions = res
+        }, err => {
+          console.log(err);
+          return false;
+        })
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-success' });
+      }else{
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-danger' });
+      }
+    })
+  }
+
+
+
 
 }

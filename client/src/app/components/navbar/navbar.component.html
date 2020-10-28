@@ -7,13 +7,13 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav ml-auto mr-2">
-      <li class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a href="#" routerLink="/home" class="nav-link font-15">Home</a>
+      <li *ngIf="isLogin()" class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a href="#" routerLink="/" class="nav-link font-15">Home</a>
       </li>
-      <li class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li *ngIf="isLogin()" class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a href="#" routerLink="/QueAns" class="nav-link font-15">Question/Anwser</a>
       </li>
-      <li class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li *ngIf="isLogin()" class="nav-item mr-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a href="#" routerLink="/developers" class="nav-link font-15">Our Developers</a>
       </li>
       <li *ngIf="!isLogin()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -35,7 +35,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#">View profile</a>
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" (click)="onLogoutClick()">Logout</a>
+            <a class="dropdown-item" href="#" (click)="onLogoutClick()">Logout</a>
           </div>
         </div>
       </li>

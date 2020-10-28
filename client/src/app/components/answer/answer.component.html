@@ -8,12 +8,12 @@
         <small class="text-muted">4 minutes • <i class="fa fa-globe"></i></small>
         <p>{{ answer.answer }} </p>
         <div>
-          <button class="btn" (click)="like(answer._id)"><small class="text-dark mr-1"
-              style="font-size: 15px;">{{ answer.like.length }}</small><i
-              class="mdi mdi-thumb-up-outline text-dark mr-1"></i></button><small class="mr-2">Like</small>
-          <button class="btn" (click)="dislike(answer._id)"><small class="text-dark mr-1"
-              style="font-size: 15px;">{{ answer.dislike.length }}</small><i
-              class="mdi mdi-thumb-down-outline text-dark mr-1"></i></button><small class="mr-2">Dislike</small>
+          <span><small class="text-dark mr-1" style="font-size: 15px;">{{ calculateLike(answer.like.length) }}</small></span>
+          <button class="btn" (click)="like(answer._id)"><i class="mdi mdi-thumb-up-outline mr-1" [ngClass]="searchLike(answer.like) ? 'text-primary' : 'text-dark'"></i><small
+              class="mr-2">Like</small></button>
+          <small class="text-dark mr-1" style="font-size: 15px;">{{ calculateDislike(answer.dislike.length) }}</small>
+          <button class="btn" (click)="dislike(answer._id)"><i
+              class="mdi mdi-thumb-down-outline mr-1" [ngClass]="searchDislike(answer.dislike) ? 'text-danger' : 'text-dark'"></i><small class="mr-2">Dislike</small></button>
 
         </div>
 

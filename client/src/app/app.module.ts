@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Flash message
 import { ToastModule } from 'ng-uikit-pro-standard';
@@ -24,7 +26,8 @@ import { PostComponent } from './components/post/post.component';
 import { QuestionComponent } from './components/question/question.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/login/login.component';
+import { UnknownComponent } from './components/unknown/unknown.component'
 
 
 @NgModule({
@@ -39,6 +42,7 @@ import { LoginComponent } from './components/login/login.component'
     AnswerComponent,
     RegisterComponent,
     LoginComponent,
+    UnknownComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,8 @@ import { LoginComponent } from './components/login/login.component'
     FormsModule,
     ToastModule.forRoot(),
     FlashMessagesModule.forRoot(),
+    TagInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     QueAnsService,

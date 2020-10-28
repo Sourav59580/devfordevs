@@ -18,7 +18,10 @@ export class NavbarComponent implements OnInit {
     private _AuthService: AuthService,
     private _flashMessagesService: FlashMessagesService,
     private _router: Router 
-    ) { }
+    ) {
+      this.user =this._AuthService.getUserData();
+      this.user = JSON.parse(this.user);
+     }
 
 
   ngOnInit(): void {
