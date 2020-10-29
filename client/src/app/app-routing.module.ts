@@ -7,6 +7,7 @@ import { QueAnsComponent } from './components/que-ans/que-ans.component';
 import { RegisterComponent } from "./components/register/register.component";
 import { LoginComponent } from "./components/login/login.component"
 import { UnknownComponent } from "./components/unknown/unknown.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 import { AuthGuardService as AuthGuard} from "./services/auth-guard.service";
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "", component: HomeComponent,canActivate:[AuthGuard]},
   {path: "developers", component: DevelopersComponent,canActivate:[AuthGuard]},
   {path: "QueAns", component: QueAnsComponent,canActivate:[AuthGuard]},
+  {path: "profile", component: ProfileComponent,canActivate:[AuthGuard]},
   {path: "**", component:UnknownComponent}
 ];
 

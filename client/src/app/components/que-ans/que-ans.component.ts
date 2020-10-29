@@ -24,7 +24,10 @@ export class QueAnsComponent implements OnInit {
     private _QueAnsService: QueAnsService,
     private _AuthService: AuthService,
     private _flashMessagesService: FlashMessagesService,
-  ) { }
+  ) {
+    this.user = this._AuthService.getUserData();
+    this.user = JSON.parse(this.user);
+   }
 
   ngOnInit() {
 

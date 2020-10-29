@@ -25,8 +25,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user =this._AuthService.getUserData();
-    this.user = JSON.parse(this.user);
+
   }
 
   isLogin():boolean{

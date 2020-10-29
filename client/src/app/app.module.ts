@@ -27,7 +27,8 @@ import { QuestionComponent } from './components/question/question.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { UnknownComponent } from './components/unknown/unknown.component'
+import { UnknownComponent } from './components/unknown/unknown.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { UnknownComponent } from './components/unknown/unknown.component'
     RegisterComponent,
     LoginComponent,
     UnknownComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
