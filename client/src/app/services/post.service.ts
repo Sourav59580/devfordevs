@@ -26,5 +26,11 @@ export class PostService {
     header.append('Content-Type','application/json');
     return this.http.post("http://localhost:3000/post/addComment",comment,{headers:header}).pipe(map((res: any) => res ));
   }
+
+  addReaction(reaction){
+    let header = new HttpHeaders();
+    header.append('Content-Type','application/json');
+    return this.http.post("http://localhost:3000/post/addLike",reaction,{headers:header}).pipe(map((res: any) => res ));
+  }
   
 }

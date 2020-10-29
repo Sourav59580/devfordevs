@@ -24,6 +24,17 @@ export class HomeComponent implements OnInit {
   isImageSaved: boolean;
   cardImageBase64: string;
 
+  // reaction 
+  nothing_reaction: any = "<i class='fa fa-thumbs-o-up mr-2'></i>Like";
+  like_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/like.gif?raw=true' width='30px' class='mr-1'>Like";
+  superb_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/superb.gif?raw=true' width='30px' class='mr-1'>Superb";
+  love_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/love.gif?raw=true' width='30px' class='mr-1'>Love";
+  curious_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/curious.gif?raw=true' width='30px' class='mr-1'>Curious";
+  cry_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/cry.gif?raw=true' width='30px' class='mr-1'>Cry";
+  sad_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/sad.gif?raw=true' width='30px' class='mr-1'>Sad";
+  angry_reaction: any = "<img src='https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/angry.gif?raw=true' width='30px' class='mr-1'>Angry";
+
+
   constructor(
     private titleService: Title,
     private _PostService: PostService,
@@ -51,6 +62,38 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchId(likes){
+    for(var i=0;i<likes.length;i++){
+      if(likes[i].liked_by==this.user.id)
+      {
+        return this.checkReaction(likes[i].reaction);
+      }
+    }
+    return this.nothing_reaction
+  }
+
+  // check reaction
+  checkReaction(reaction) {
+    if (reaction == 'nothing' || reaction == '')
+      return this.nothing_reaction;
+    else if (reaction == 'like')
+      return this.like_reaction;
+    else if (reaction == 'superb')
+      return this.superb_reaction;
+    else if (reaction == "love")
+      return this.love_reaction;
+    else if (reaction == "curious")
+      return this.curious_reaction;
+    else if (reaction == "cry")
+      return this.cry_reaction;
+    else if (reaction == 'sad')
+      return this.sad_reaction;
+    else if (reaction == 'angry')
+      return this.angry_reaction;
+    else
+      return this.nothing_reaction;
+  }
+
   // claculate date diffrence
   calculateDiff(data) {
 
@@ -62,10 +105,35 @@ export class HomeComponent implements OnInit {
   }
 
   // Like a post
-  
+  like(reaction,postId) {
+    const userReaction = {
+      postId: postId,
+      liked_by: this.user.id,
+      name: this.user.name,
+      reaction: reaction
+    }
+    console.log(userReaction)
+    this._PostService.addReaction(userReaction).subscribe(res=>{
+
+      if (res.success) {
+        //get all posts
+        this._PostService.getPosts().subscribe(res => {
+          console.log(res)
+          this.posts = res.response;
+        }, err => {
+          console.log(err);
+          return false;
+        })
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-success' });
+      } else {
+        this._flashMessagesService.show(res.msg, { cssClass: 'alert-danger' });
+      }
+
+    })
+  }
 
   // write a comment
-  writeComment(postId,comment){
+  writeComment(postId, comment) {
     const userComment = {
       postId: postId,
       commentator_id: this.user.id,
@@ -75,7 +143,7 @@ export class HomeComponent implements OnInit {
       comment: comment
     }
 
-    this._PostService.addComment(userComment).subscribe(res=>{
+    this._PostService.addComment(userComment).subscribe(res => {
 
       if (res.success) {
         //get all posts
@@ -95,7 +163,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-// Start a post
+  // Start a post
   startAPost() {
     const formData = new FormData();
     formData.append("authorId", this.user.id);

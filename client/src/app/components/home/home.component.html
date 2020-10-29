@@ -6,12 +6,12 @@
       <div class="bg-white shadow-sm mb-4 pb-3">
         <div class="bg-warning dp-background"></div>
         <div class="dp rounded-circle mx-auto">
-          <img src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
+          <img src="{{ user.dp }}"
             class="rounded-circle w-100">
         </div>
 
-        <h5 class="text-center font-weight-bold">Sourav Santra</h5>
-        <h6 class="text-center">Web Developer</h6>
+        <h5 class="text-center font-weight-bold">{{ user.name }}</h5>
+        <h6 class="text-center">{{ user.designation }}</h6>
       </div>
       <!-- Tags -->
       <div class="bg-white shadow-sm p-3 mb-4">
@@ -38,7 +38,7 @@
         <div class="shadow-sm rounded bg-white">
           <div class="container d-flex justify-content-between px-3 pt-3">
             <div class="user-dp rounded-circle">
-              <img src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
+              <img src="{{ user.dp }}"
                 class="rounded-circle w-100">
             </div>
             <div>
@@ -70,7 +70,7 @@
             <div class="container d-flex justify-content-between p-3">
               <div class="d-flex">
                 <div class="user-dp rounded-circle">
-                  <img src="{{ post.authorDP}}" class="rounded-circle w-100">
+                  <img src="{{ post.authorDP }}" class="rounded-circle w-100">
                 </div>
                 <div class="ml-2">
                   <p class="m-0 font-weight-bold text-dark">{{ post.authorName }}</p>
@@ -97,52 +97,59 @@
               <hr>
             </div>
 
-            
+
             <div class="container d-flex justify-content-around">
-                
-                <!-- reaction -->
+
+              <!-- reaction -->
               <div>
                 <div class="text-center reaction-container">
                   <div class="like_container text-center">
                     <div class="reactions bg-white shadow-sm p-1 d-flex border">
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Like">
+                      <div class="rection h-100 p-0 m-0" (click)="like('like',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Like">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/like.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Superb">
+                      <div class="rection h-100 p-0 m-0" (click)="like('superb',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Superb">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/superb.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Love">
+                      <div class="rection h-100 p-0 m-0" (click)="like('love',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Love">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/love.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Curious">
+                      <div class="rection h-100 p-0 m-0" (click)="like('curious',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Curious">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/curious.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Cry">
+                      <div class="rection h-100 p-0 m-0" (click)="like('cry',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Cry">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/cry.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Sad">
+                      <div class="rection h-100 p-0 m-0" (click)="like('sad',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Sad">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/sad.gif?raw=true"
                           class="h-100">
                       </div>
-                      <div class="rection h-100 p-0 m-0" data-toggle="tooltip" data-placement="top" title="Angry">
+                      <div class="rection h-100 p-0 m-0" (click)="like('angry',post._id)" data-toggle="tooltip"
+                        data-placement="top" title="Angry">
                         <img
                           src="https://github.com/Sourav59580/facebook_reaction/blob/main/devfordevs%20rection/angry.gif?raw=true"
                           class="h-100">
                       </div>
                     </div>
                   </div>
-                  <button class="btn like-btn"><i class="fa fa-thumbs-o-up mr-2"></i>Like</button>
+                  <button class="btn like-btn" (click)="like('nothing',post._id)" [innerHTML]="searchId(post.likes)"></button>
                 </div>
               </div>
 
@@ -153,7 +160,7 @@
             </div>
 
             <div class="container collapse" id="{{ 'wave' + i }}">
-                <!-- new comment section -->
+              <!-- new comment section -->
               <div class="container">
                 <hr>
                 <div class="media">
@@ -201,84 +208,10 @@
       <!-- right section -->
 
       <div class="container p-0">
-        <button class="btn btn-primary btn-block rounded-0 mb-4">Ask A Question</button>
-
-        <!--login form-->
-        <div class="bg-white shadow-sm p-3 mb-4">
-          <h4>Login</h4>
-          <hr>
-          <input type="text" name="username" placeholder="&#xf2bd; Username" class="form-control mb-3">
-          <input type="password" name="password" placeholder="&#xf023; Password" class="form-control mb-4">
-          <button class="btn btn-warning btn-block mb-3 rounded-0">Log in</button>
-          <div class="d-flex justify-content-between flex-wrap">
-            <div>
-              <input type="checkbox" checked class="mr-1"><span>Remember Me</span>
-            </div>
-            <div>
-              <a href="#signupForm" class="text-dark register" data-toggle="modal">Register</a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Signup modal -->
-        <div class="modal fade" id="signupForm">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-                <h4>Register Now</h4>
-                <i class="fa fa-times-circle text-danger"
-                  style="position: absolute;top:8px;right:8px;font-size:25px; z-index: 1000;cursor: pointer;"
-                  data-dismiss="modal"></i>
-                <hr>
-                <input type="text" name="username" placeholder="&#xf2bd; Username" class="form-control mb-3">
-                <input type="email" name="email" placeholder="&#xf0e0; Email" class="form-control mb-3">
-                <input type="password" name="password" placeholder="&#xf023; Password" class="form-control mb-4">
-                <button class="btn btn-primary btn-block mb-3 rounded-0">Register</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Stats-->
-        <div class="container bg-white shadow-sm mb-4">
-          <div class="row">
-            <div class="col-6 border py-2 px-0">
-              <div style="border-left:3px solid #2D6FF7;"
-                class="d-flex flex-column justify-content-center align-items-center">
-                <p class="text-primary">Questions</p>
-                <h4>21</h4>
-              </div>
-            </div>
-            <div class="col-6 border py-2 px-0">
-              <div style="border-right:3px solid #2D6FF7;"
-                class="d-flex flex-column justify-content-center align-items-center">
-                <p class="text-danger">Answers</p>
-                <h4>21</h4>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6 border py-2 px-0">
-              <div style="border-left:3px solid #2D6FF7;"
-                class="d-flex flex-column justify-content-center align-items-center">
-                <p class="text-success">Best Answers</p>
-                <h4>21</h4>
-              </div>
-            </div>
-            <div class="col-6 border py-2 px-0">
-              <div style="border-right:3px solid #2D6FF7;"
-                class="d-flex flex-column justify-content-center align-items-center">
-                <p class="text-info">Users</p>
-                <h4>21</h4>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!--Highest points-->
         <div class="bg-white shadow-sm p-3 mb-4">
-          <h4>Highest points</h4>
+          <h5>Suggestions For You</h5>
           <hr>
           <div class="d-flex justify-content-around border-bottom mb-3">
             <img
@@ -286,8 +219,8 @@
               width="60px" height="60px" class="rounded-circle">
             <div>
               <h5>Ahmed Hassan</h5>
-              <span class="badge badge-success p-2 my-1">Teacher</span>
-              <p>258 Points</p>
+              <button class="btn btn-sm btn-success">Follow</button>
+              <p>258 Followers</p>
             </div>
           </div>
 
@@ -297,41 +230,8 @@
               width="60px" height="60px" class="rounded-circle">
             <div>
               <h5>Ahmed Hassan</h5>
-              <span class="badge badge-success p-2 my-1">Teacher</span>
-              <p>258 Points</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent question answer -->
-        <div class="bg-white shadow-sm p-3 mb-4">
-          <h4>Recent Questions</h4>
-          <hr>
-
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#questions">Questions</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#answers">Answers</a>
-            </li>
-          </ul>
-          <div id="myTabContent" class="tab-content pt-3">
-            <div class="tab-pane fade show active" id="questions">
-              <div>
-                <h5 class="mb-3">Do I need to have</h5>
-                <h6 class="text-secondary">Participate in the referendum, Please.</h6>
-                <p class="text-secondary">November 19, 2017</p>
-                <hr>
-              </div>
-
-            </div>
-            <div class="tab-pane fade" id="answers">
-              <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation
-                +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-                craft beer twee.
-                Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-                PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+              <button class="btn btn-sm btn-success">Follow</button>
+              <p>360 Followers</p>
             </div>
           </div>
         </div>
@@ -351,7 +251,7 @@
     <div class="modal-content">
       <div class="modal-body p-0">
         <div class="modal-header bg-primary text-light">
-          <h5 class="modal-title" id="exampleModalLabel">Ask A Question</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Write A Post</h5>
           <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
