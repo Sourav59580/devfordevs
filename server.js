@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const config = require("./config/database");
 const passport = require('passport');
 const cors = require('cors');
+const fileUpload = require('express-fileupload')
 
 const app = express();
 
@@ -19,14 +20,17 @@ mongoose.connect(config.database, {
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
+//fileupload middleware use
+app.use(fileUpload())
+
 // use of cors
 app.use(cors())
 
 // body-parser middleware use
 app.use(bodyparser.json());
 
-// express static folder
-//app.use(express.static(path.join(__dirname, ('public'))));
+//use express static folder
+app.use(express.static("./client/src/assets/"));
 
 
 // passport middleware
@@ -46,6 +50,8 @@ app.get('/',(req,res) => {
 
 app.use("/auth",require("./routes/auth"))
 app.use("/QA",require("./routes/question"))
+app.use("/post",require("./routes/post"))
+
 
 
 
