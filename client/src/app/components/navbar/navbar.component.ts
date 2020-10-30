@@ -34,8 +34,9 @@ export class NavbarComponent implements OnInit {
 
   onLogoutClick(){
     this._AuthService.logout();
+    this._router.navigate(['/home']);
     this._flashMessagesService.show("Logout successfull.",{ cssClass: 'alert-success' });
-    this._router.navigate(['/']);
+    
   }
 
 }

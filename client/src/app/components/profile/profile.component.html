@@ -14,7 +14,7 @@
                     </div>
                     <div class="profile-dp rounded-circle mx-auto bg-light shadow-sm border">
 
-                        <img src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
+                        <img src="{{ user.dp }}"
                             class="rounded-circle w-100">
                     </div>
                     <div style="position: relative;top:-50px">
@@ -29,9 +29,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-dark btn-icon ml-1"><i class="fa fa-github"></i></a>
-                            <a href="#" class="btn btn-primary btn-icon ml-1"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" class="btn btn-danger btn-icon ml-1"><i class="fa fa-google"></i></a>
+                            <a href="{{ user.githubLink }}" class="btn btn-dark btn-icon ml-1"><i class="fa fa-github"></i></a>
+                            <a href="{{ user.linkedinLink }}" class="btn btn-primary btn-icon ml-1"><i class="fa fa-linkedin"></i></a>
+                            <a href="{{ user.googlelink }}" class="btn btn-danger btn-icon ml-1"><i class="fa fa-instagram"></i></a>
                         </div>
 
                     </div>
@@ -74,15 +74,15 @@
                 <div class="container mb-4">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <h4 class="font-weight-bold">Nidhi Goyal</h4>
-                            <h6>Graphic Designer and Full Stack Developer</h6>
+                            <h4 class="font-weight-bold">{{ user.name }}</h4>
+                            <h6>{{ user.designation }}</h6>
 
                         </div>
                         <div>
                             <div class="d-flex align-items-center">
                                 <img src="https://storage.googleapis.com/ezap-prod/colleges/1481/chitkara-college-of-pharmacy-rajpura-logo.png"
                                     width="30px">
-                                <p class="mt-3">Chitkara University</p>
+                                <p class="mt-3">{{ user.companyORinstitute }}</p>
                             </div>
 
                         </div>

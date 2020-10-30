@@ -95,11 +95,10 @@ export class HomeComponent implements OnInit {
   }
 
   // claculate date diffrence
-  calculateDiff(data) {
-
-    let date = new Date(data);
+  calculateDiff(d) {
+    let date = new Date(d);
     let currentDate = new Date();
-
+    
     let days = Math.floor((currentDate.getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
     return days;
   }

@@ -27,9 +27,6 @@ export class QueAnsComponent implements OnInit {
   ) {
     this.user = this._AuthService.getUserData();
     this.user = JSON.parse(this.user);
-   }
-
-  ngOnInit() {
 
     // Get all questions and answers
     this._QueAnsService.getQuestionsAnswers().subscribe(res => {
@@ -39,7 +36,9 @@ export class QueAnsComponent implements OnInit {
       console.log(err);
       return false;
     })
+   }
 
+  ngOnInit():void {
   }
  
   // set in ques anns
