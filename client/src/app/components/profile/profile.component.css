@@ -95,3 +95,7 @@
 .btn-icon .fa {
     font-size: 15px;
 }
+
+.active{
+    border-bottom: 2px solid red;
+}

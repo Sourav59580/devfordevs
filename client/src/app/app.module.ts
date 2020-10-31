@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfileModule } from "./components/profile/profile.module"
 
 // Flash message
 import { ToastModule } from 'ng-uikit-pro-standard';
@@ -55,6 +56,7 @@ import { ProfileComponent } from './components/profile/profile.component'
     FlashMessagesModule.forRoot(),
     TagInputModule,
     BrowserAnimationsModule,
+    ProfileModule,
   ],
   providers: [
     QueAnsService,

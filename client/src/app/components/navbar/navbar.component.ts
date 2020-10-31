@@ -29,6 +29,8 @@ export class NavbarComponent implements OnInit {
   }
 
   isLogin():boolean{
+    this.user =this._AuthService.getUserData();
+    this.user = JSON.parse(this.user); 
    return this._AuthService.isAuthenticated();
   }
 

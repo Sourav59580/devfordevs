@@ -92,13 +92,17 @@
                 <nav class="navbar navbar-expand-sm py-0">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav py-0">
-                            <li class="nav-item active">
-                                <a href="#" class="nav-link font-15 text-dark text-center d-flex flex-column"><i
+                            <!-- <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="" class="nav-link font-15 text-dark text-center d-flex flex-column"><i
+                                        class="mdi mdi-bio text-success mr-2"></i>Your Posts</a>
+                            </li> -->
+                            <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a routerLink="/profile/ownPost" class="nav-link font-15 text-dark text-center d-flex flex-column"><i
                                         class="mdi mdi-television-guide text-success mr-2"></i>Your Posts</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
 
-                                <a href="#" class="nav-link font-15 text-dark text-center d-flex flex-column"><i
+                                <a routerLink="/profile/ownQuesAns" class="nav-link font-15 text-dark text-center d-flex flex-column"><i
                                         class="mdi mdi-comment-question-outline text-danger mr-2"></i>Your Questions</a>
 
                             </li>
@@ -135,9 +139,17 @@
                     </div>
                 </div>
 
+                <div class="container pt-4">
+                    
+                    <router-outlet>
+                       
+                    </router-outlet>
+
+                </div>
+
                 <!-- Your post section -->
 
-                <div class="shadow-sm rounded my-3 bg-white pb-3">
+                <!-- <div class="shadow-sm rounded my-3 bg-white pb-3">
                     <div class="container d-flex justify-content-between p-3">
                         <div class="d-flex">
                             <div class="user-dp rounded-circle">
@@ -233,10 +245,10 @@
                     </div>
 
 
-                </div>
+                </div> -->
 
                 <!-- Your Question Section -->
-                <div class="container mt-2 mb-4 pt-3 bg-white shadow-sm rounded-lg">
+                <!-- <div class="container mt-2 mb-4 pt-3 bg-white shadow-sm rounded-lg">
                     <div class="d-flex">
                         <div style="width: 50px;height:50px" class="rounded-circle">
                             <img src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
@@ -377,7 +389,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
