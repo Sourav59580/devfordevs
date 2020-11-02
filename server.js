@@ -51,6 +51,7 @@ app.get('/',(req,res) => {
 app.use("/auth",require("./routes/auth"))
 app.use("/QA",require("./routes/question"))
 app.use("/post",require("./routes/post"))
+app.use("/developers",require("./routes/developer"))
 
 
 
