@@ -12,4 +12,8 @@ export class DevelopersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  follow(followingId){
+    console.log(followingId);
+  }
+
 }
