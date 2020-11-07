@@ -1,3 +1,6 @@
+import { OwnPostsComponent } from './components/own-posts/own-posts.component';
+import { QuestionComponent } from './components/question/question.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { OwnQuesAnsComponent } from './components/profile/own-ques-ans/own-ques-ans.component';
 import { OwnpostComponent } from './components/profile/ownpost/ownpost.component';
 import { NgModule } from '@angular/core';
@@ -23,8 +26,15 @@ const routes: Routes = [
   {
     path: "profile", component: ProfileComponent, canActivate: [AuthGuard],
     children: [
-      {path: "ownPost",component: OwnpostComponent,canActivate: [AuthGuard]},
-      {path: "ownQuesAns",component: OwnQuesAnsComponent,canActivate: [AuthGuard]}
+      { path: "ownPost", component: OwnpostComponent, canActivate: [AuthGuard] },
+      { path: "ownQuesAns", component: OwnQuesAnsComponent, canActivate: [AuthGuard] }
+    ]
+  },
+  {
+    path: 'developer-profile/:id', component: ViewProfileComponent,
+    children: [
+      { path: "developer-questions-answers",component:QuestionComponent},
+      { path: "developer-posts",component:OwnPostsComponent}
     ]
   },
   { path: "**", component: UnknownComponent }

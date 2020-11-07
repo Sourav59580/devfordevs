@@ -29,7 +29,9 @@ import { AnswerComponent } from './components/answer/answer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UnknownComponent } from './components/unknown/unknown.component';
-import { ProfileComponent } from './components/profile/profile.component'
+import { ProfileComponent } from './components/profile/profile.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { OwnPostsComponent } from './components/own-posts/own-posts.component'
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { ProfileComponent } from './components/profile/profile.component'
     LoginComponent,
     UnknownComponent,
     ProfileComponent,
+    ViewProfileComponent,
+    OwnPostsComponent,
   ],
   imports: [
     BrowserModule,

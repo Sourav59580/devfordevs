@@ -42,8 +42,8 @@
                     <img src="{{ developer.dp }}"
                       class="rounded-circle w-100">
                   </div>
-                  <h5 class="text-center font-weight-bold">{{ developer.name }}</h5>
-                  <h6 class="text-center">{{ developer.designation }}</h6>
+                  <a [routerLink]="['/developer-profile',developer._id,'developer-posts']" class="text-dark"><h5 class="text-center font-weight-bold">{{ developer.name }}</h5>
+                  <h6 class="text-center">{{ developer.designation }}</h6></a>
   
                   <div class="d-flex justify-content-center">
                     <a href="{{ developer.githubLink }}" class="btn btn-dark btn-icon ml-1"><i class="fa fa-github"></i></a>
@@ -64,7 +64,7 @@
 
 
           
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="card bg-white shadow-sm rounded mb-3 border-0">
               <div class="card-body p-0 text-center">
                 <div class="bg-primary" style="height: 100px;"></div>
@@ -134,7 +134,7 @@
               </div>
 
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
