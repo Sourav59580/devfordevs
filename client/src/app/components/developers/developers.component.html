@@ -6,12 +6,12 @@
       <div class="bg-white shadow-sm mb-4 pb-3">
         <div class="bg-warning dp-background"></div>
         <div class="dp rounded-circle mx-auto">
-          <img src="https://www.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg"
+          <img src="{{ user.dp }}"
             class="rounded-circle w-100">
         </div>
 
-        <h5 class="text-center font-weight-bold">Sourav Santra</h5>
-        <h6 class="text-center">Web Developer</h6>
+        <h5 class="text-center font-weight-bold">{{ user.name }}</h5>
+        <h6 class="text-center">{{ user.designation }}</h6>
       </div>
       <!-- Tags -->
       <div class="bg-white shadow-sm p-3 mb-4">

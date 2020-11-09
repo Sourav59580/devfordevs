@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PublicProfileService } from "../../services/public-profile.service"
 import { Router, RouterLinkActive, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import { DeveloperService } from "../../services/developer.service";
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-view-profile',
@@ -10,19 +12,27 @@ import { AuthService } from "../../services/auth.service";
 })
 export class ViewProfileComponent implements OnInit {
   id: any
-  user:any;
- 
+  user: any;
+
+  ownprofile: any;
+
 
   constructor(
-    private _PublicProfileService:PublicProfileService,
+    private _PublicProfileService: PublicProfileService,
     private route: ActivatedRoute,
-    private _AuthService: AuthService, ) {
+    private _AuthService: AuthService,
+    private _DeveloperService: DeveloperService,
+    private _flashMessagesService: FlashMessagesService, ) {
+
+    this.ownprofile = this._AuthService.getUserData();
+    this.ownprofile = JSON.parse(this.ownprofile);
+
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      sessionStorage.setItem("developerId",this.id)
+      sessionStorage.setItem("developerId", this.id)
     });
-    
-    this._PublicProfileService.getProfile(this.id).subscribe(res=>{
+
+    this._PublicProfileService.getProfile(this.id).subscribe(res => {
       console.log(res.data);
       this.user = res.data
     }, err => {
@@ -30,14 +40,46 @@ export class ViewProfileComponent implements OnInit {
       return false;
     })
 
-    
-
-    
-   }
+  }
 
   ngOnInit() {
     // this.route.params.subscribe(params => this.id = params['id']);
     // console.log(this.id)
   }
-  
+
+  follow(e, followingId) {
+    const id = e.target.id;
+    const html = document.getElementById(id).innerHTML
+    console.log(html);
+
+    const data = {
+      ownId: this.ownprofile.id,
+      followingId: followingId
+    }
+    console.log(data)
+    if (html.trim() == "Unfollow") {
+      document.getElementById(id).innerHTML = "<span class='spinner-grow spinner-grow-sm' role='status' aria-hidden='true'></span>Loading...";
+      console.log("unfollow");
+      this._DeveloperService.unfollowing(data).subscribe(res => {
+        if (res.success)
+          document.getElementById(id).innerHTML = "<i class='mdi mdi-account-plus mr-2'></i>Follow";
+        else {
+          document.getElementById(id).innerHTML = "Unfollow";
+          this._flashMessagesService.show(res.msg, { cssClass: 'alert-danger' });
+        }
+      })
+
+    } else {
+      document.getElementById(id).innerHTML = "<span class='spinner-grow spinner-grow-sm' role='status' aria-hidden='true'></span>Loading...";
+      this._DeveloperService.following(data).subscribe(res => {
+        if (res.success)
+          document.getElementById(id).innerHTML = "Unfollow";
+        else {
+          document.getElementById(id).innerHTML = "Follow";
+          this._flashMessagesService.show(res.msg, { cssClass: 'alert-danger' });
+        }
+      })
+    }
+  }
+
 }
