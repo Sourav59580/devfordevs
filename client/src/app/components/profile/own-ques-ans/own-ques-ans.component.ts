@@ -39,7 +39,7 @@ export class OwnQuesAnsComponent implements OnInit {
 
   ngOnInit(): void {
     this._PublicProfileService.getQuestions(this.id).subscribe(res=>{
-      console.log(res.data)
+    
       this.questions = res.data;
     },err=>{
       console.log(err);
@@ -73,7 +73,7 @@ export class OwnQuesAnsComponent implements OnInit {
       if (res.success) {
         // Get all questions and answers
         this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-          console.log(res)
+          
           this.questions = res
         }, err => {
           console.log(err);
@@ -127,7 +127,7 @@ export class OwnQuesAnsComponent implements OnInit {
 
     // // Get all questions and answers
     // this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-    //   console.log(res)
+
     //   this.questionsAnswers = res
     // }, err => {
     //   console.log(err);
@@ -169,7 +169,7 @@ export class OwnQuesAnsComponent implements OnInit {
 
   setQuesAns(){
     this._PublicProfileService.getQuestions(this.id).subscribe(res=>{
-      console.log(res.data)
+     
       this.questions = res.data;
     },err=>{
       console.log(err);

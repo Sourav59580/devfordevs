@@ -34,7 +34,6 @@ router.post("/getownPosts", (req, res) => {
 
   Post.find({authorId:id})
     .then(result => {
-      console.log(result)
       res.json({
         data: result
       });
@@ -58,7 +57,6 @@ router.post("/getownQueAns", (req, res) => {
 
   Question.find({authorId:id})
     .then(result => {
-      console.log(result)
       res.json({
         data: result
       });

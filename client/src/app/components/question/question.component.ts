@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit():void {
 
     this._PublicProfileService.getQuestions(this.id).subscribe(res=>{
-      console.log(res.data)
+   
       this.questions = res.data;
     },err=>{
       console.log(err);
@@ -80,7 +80,7 @@ export class QuestionComponent implements OnInit {
       if (res.success) {
         // Get all questions and answers
         this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-          console.log(res)
+          
           this.questions = res
         }, err => {
           console.log(err);
@@ -131,18 +131,6 @@ export class QuestionComponent implements OnInit {
       reaction_by: this.user.id,
       reaction: "like"
     }
-
-    // // Get all questions and answers
-    // this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-    //   console.log(res)
-    //   this.questionsAnswers = res
-    // }, err => {
-    //   console.log(err);
-    //   return false;
-    // })
-    // // send data to parent
-    // this.newUpdateData.emit(this.questionsAnswers);
-
      
 
     this._QueAnsService.addReaction(userLike).subscribe( res =>{
@@ -176,7 +164,7 @@ export class QuestionComponent implements OnInit {
 
   setQuesAns(){
     this._PublicProfileService.getQuestions(this.id).subscribe(res=>{
-      console.log(res.data)
+      
       this.questions = res.data;
     },err=>{
       console.log(err);

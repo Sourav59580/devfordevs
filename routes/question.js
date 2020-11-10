@@ -10,7 +10,6 @@ const Question = require("../models/question");
 router.get("/getQueAns",(req,res)=>{
     Question.find()
     .then(result =>{
-        console.log(result);
         res.json({response:result});
     })
     .catch(err => {
@@ -73,7 +72,6 @@ router.post("/addAnswer", (req, res) => {
             upsert: true
         })
         .then((user) => {
-            console.log(user);
             res.json({
                 success: true,
                 msg: 'Answer added successfully.'
@@ -167,7 +165,6 @@ router.post("/answerLike", (req, res) => {
                         upsert: true
                     })
                     .then(user => {
-                        console.log(user);
                         res.json({
                             success: true,
                             msg: 'Remove from liked answer'
@@ -202,7 +199,6 @@ router.post("/answerLike", (req, res) => {
                                         upsert: true
                                     })
                                     .then(user => {
-                                        console.log(user);
                                         // Like push start
                                         Question.findOneAndUpdate({
                                                 'answers._id': answer_id
@@ -214,7 +210,7 @@ router.post("/answerLike", (req, res) => {
                                                 upsert: true
                                             })
                                             .then(user => {
-                                                console.log(user);
+                                              
                                                 res.json({
                                                     success: true,
                                                     msg: "You like this answer"
@@ -248,7 +244,7 @@ router.post("/answerLike", (req, res) => {
                                         upsert: true
                                     })
                                     .then(user => {
-                                        console.log(user);
+                                       
                                         res.json({
                                             success: true,
                                             msg: "You like this answer"
@@ -292,7 +288,7 @@ router.post("/answerLike", (req, res) => {
                         upsert: true
                     })
                     .then(user => {
-                        console.log(user);
+                       
                         res.json({
                             success: true,
                             msg: 'Dislike removed'
@@ -337,14 +333,14 @@ router.post("/answerLike", (req, res) => {
                                                 upsert: true
                                             })
                                             .then(user => {
-                                                console.log(user);
+                                              
                                                 res.json({
                                                     success: true,
                                                     msg: "You dislike this answer"
                                                 });
                                             })
                                             .catch(err => {
-                                                console.log(err);
+                                               
                                                 res.json({
                                                     success: false,
                                                     msg: "Failed"
@@ -369,7 +365,7 @@ router.post("/answerLike", (req, res) => {
                                         upsert: true
                                     })
                                     .then(user => {
-                                        console.log(user);
+                                      
                                         res.json({
                                             success: true,
                                             msg: "You dislike this answer"

@@ -39,7 +39,7 @@ export class OwnpostComponent implements OnInit {
     this.id = this.user.id;
 
     this._PublicProfileService.getPosts(this.id).subscribe(res=>{
-      console.log(res.data)
+      
       this.posts = res.data;
     },err=>{
       console.log(err);
@@ -100,13 +100,13 @@ like(reaction,postId) {
     name: this.user.name,
     reaction: reaction
   }
-  console.log(userReaction)
+  
   this._PostService.addReaction(userReaction).subscribe(res=>{
 
     if (res.success) {
       //get all posts
       this._PostService.getPosts().subscribe(res => {
-        console.log(res)
+     
         this.posts = res.response;
       }, err => {
         console.log(err);
@@ -136,7 +136,7 @@ writeComment(postId, comment) {
     if (res.success) {
       //get all posts
       this._PostService.getPosts().subscribe(res => {
-        console.log(res)
+        
         this.posts = res.response;
       }, err => {
         console.log(err);

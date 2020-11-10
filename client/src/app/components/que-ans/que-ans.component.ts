@@ -30,7 +30,7 @@ export class QueAnsComponent implements OnInit {
 
     // Get all questions and answers
     this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-      console.log(res)
+     
       this.questions = res
     }, err => {
       console.log(err);
@@ -45,7 +45,7 @@ export class QueAnsComponent implements OnInit {
   public setQuesAns(){
       // Get all questions and answers
     this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-      console.log(res)
+     
       this.questions = res
     }, err => {
       console.log(err);
@@ -55,7 +55,7 @@ export class QueAnsComponent implements OnInit {
 
   // send child data in parent
   setInParent(res){
-    console.log(res);
+   
   }
 
   // claculate date diffrence
@@ -72,7 +72,7 @@ export class QueAnsComponent implements OnInit {
 
   }
   onEnter(event) {
-    console.log(this.tags);
+   
   }
 
   askQuestion() {
@@ -93,7 +93,7 @@ export class QueAnsComponent implements OnInit {
       if (res.success) {
         // Get all questions and answers
         this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-          console.log(res)
+          
           this.questions = res
         }, err => {
           console.log(err);
@@ -122,7 +122,7 @@ export class QueAnsComponent implements OnInit {
       if (res.success) {
         // Get all questions and answers
         this._QueAnsService.getQuestionsAnswers().subscribe(res => {
-          console.log(res)
+         
           this.questions = res
         }, err => {
           console.log(err);

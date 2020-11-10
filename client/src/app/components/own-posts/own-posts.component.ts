@@ -38,7 +38,7 @@ export class OwnPostsComponent implements OnInit {
     this.user = JSON.parse(this.user);
 
     this._PublicProfileService.getPosts(this.id).subscribe(res=>{
-      console.log(res.data)
+     
       this.posts = res.data;
     },err=>{
       console.log(err);
@@ -98,13 +98,13 @@ export class OwnPostsComponent implements OnInit {
       name: this.user.name,
       reaction: reaction
     }
-    console.log(userReaction)
+   
     this._PostService.addReaction(userReaction).subscribe(res=>{
 
       if (res.success) {
         //get all posts
         this._PostService.getPosts().subscribe(res => {
-          console.log(res)
+        
           this.posts = res.response;
         }, err => {
           console.log(err);
@@ -134,7 +134,7 @@ export class OwnPostsComponent implements OnInit {
       if (res.success) {
         //get all posts
         this._PostService.getPosts().subscribe(res => {
-          console.log(res)
+        
           this.posts = res.response;
         }, err => {
           console.log(err);

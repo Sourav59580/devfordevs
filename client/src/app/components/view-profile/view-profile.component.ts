@@ -33,7 +33,6 @@ export class ViewProfileComponent implements OnInit {
     });
 
     this._PublicProfileService.getProfile(this.id).subscribe(res => {
-      console.log(res.data);
       this.user = res.data
     }, err => {
       console.log(err);
@@ -44,22 +43,21 @@ export class ViewProfileComponent implements OnInit {
 
   ngOnInit() {
     // this.route.params.subscribe(params => this.id = params['id']);
-    // console.log(this.id)
+    
   }
 
   follow(e, followingId) {
     const id = e.target.id;
     const html = document.getElementById(id).innerHTML
-    console.log(html);
-
+  
     const data = {
       ownId: this.ownprofile.id,
       followingId: followingId
     }
-    console.log(data)
+    
     if (html.trim() == "Unfollow") {
       document.getElementById(id).innerHTML = "<span class='spinner-grow spinner-grow-sm' role='status' aria-hidden='true'></span>Loading...";
-      console.log("unfollow");
+     
       this._DeveloperService.unfollowing(data).subscribe(res => {
         if (res.success)
           document.getElementById(id).innerHTML = "<i class='mdi mdi-account-plus mr-2'></i>Follow";

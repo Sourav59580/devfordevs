@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
     //get all posts
     this._PostService.getPosts().subscribe(res => {
-      console.log(res)
+
       this.posts = res.response;
     }, err => {
       console.log(err);
@@ -111,13 +111,13 @@ export class HomeComponent implements OnInit {
       name: this.user.name,
       reaction: reaction
     }
-    console.log(userReaction)
+  
     this._PostService.addReaction(userReaction).subscribe(res=>{
 
       if (res.success) {
         //get all posts
         this._PostService.getPosts().subscribe(res => {
-          console.log(res)
+        
           this.posts = res.response;
         }, err => {
           console.log(err);
@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
       if (res.success) {
         //get all posts
         this._PostService.getPosts().subscribe(res => {
-          console.log(res)
+         
           this.posts = res.response;
         }, err => {
           console.log(err);
@@ -172,12 +172,12 @@ export class HomeComponent implements OnInit {
     formData.append("content", this.description);
     formData.append("tags", this.tags);
     formData.append("file", this.fileToUpload, this.fileToUpload.name);
-    console.log(this.fileToUpload);
+   
     this._PostService.addPost(formData).subscribe(res => {
       if (res.success) {
         //get all posts
         this._PostService.getPosts().subscribe(res => {
-          console.log(res)
+         
           this.posts = res.response;
         }, err => {
           console.log(err);
@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
       }
     })
     // this.http.post("http://localhost:3000/post/addPost",formData).subscribe((res) => {
-    //     console.log(res)
+    //    
 
     //   }, (err) =>{
     //     console.log(err)
@@ -227,9 +227,6 @@ export class HomeComponent implements OnInit {
         image.onload = rs => {
           const img_height = rs.currentTarget['height'];
           const img_width = rs.currentTarget['width'];
-
-          console.log(img_height, img_width);
-
 
           if (img_height > max_height && img_width > max_width) {
             this.imageError =

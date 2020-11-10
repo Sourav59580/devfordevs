@@ -10,7 +10,6 @@ const User = require("../models/user");
 router.get("/getAll",(req,res)=>{
     User.find()
     .then(result =>{
-        console.log(result);
         res.json({response:result});
     })
     .catch(err => {
@@ -27,7 +26,6 @@ router.post("/getAllFollowings",(req,res)=>{
     const id = req.body.id;
     User.findById(id)
     .then(result =>{
-        console.log(result.following);
         res.json({response:result.following});
     })
     .catch(err => {
@@ -63,7 +61,6 @@ router.post("/follow",(req,res)=>{
             upsert: true
         })
         .then((user) => {
-            console.log(user);
             res.json({
                 success: true,
                 msg: 'Success.'
@@ -114,7 +111,6 @@ router.post("/followRemove",(req,res)=>{
             upsert: true
         })
         .then((user) => {
-            console.log(user);
             res.json({
                 success: true,
                 msg: 'Success.'

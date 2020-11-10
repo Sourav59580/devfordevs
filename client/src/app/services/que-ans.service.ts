@@ -35,7 +35,6 @@ export class QueAnsService {
    }
 
    addReaction(reaction){
-     console.log(reaction)
     let header = new HttpHeaders();
     header.append('Content-Type','application/json');
     return this.http.post("http://localhost:3000/QA/answerLike",reaction,{headers:header})

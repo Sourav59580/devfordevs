@@ -18,11 +18,8 @@ router.post("/adp", (req, res) => {
         tags: req.body.tags
     })
 
-    console.log(newPost);
     var file = req.files.file;
     var img_name = file.name;
-    console.log(img_name);
-
 
     var content_picture = "../../../assets/posts/" + Date.now() + file.name;
 
@@ -42,7 +39,6 @@ router.post("/adp", (req, res) => {
 router.get("/getPosts", (req, res) => {
     Post.find()
         .then(result => {
-            console.log(result);
             res.json({
                 response: result
             });
@@ -123,7 +119,6 @@ router.post("/addComment", (req, res) => {
             upsert: true
         })
         .then((user) => {
-            console.log(user);
             res.json({
                 success: true,
                 msg: 'Comment added successfully.'
@@ -189,7 +184,6 @@ router.post("/addLike", (req, res) => {
                         upsert: true
                     })
                     .then((posts) => {
-                        console.log(posts);
                         res.json({
                             success: true,
                             msg: "You " + req.body.reaction + " this post."
