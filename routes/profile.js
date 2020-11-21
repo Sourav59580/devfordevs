@@ -72,6 +72,12 @@ router.post("/getownQueAns", (req, res) => {
 })
 
 
+//@type    POST
+//$route   /profile/getownQueAns
+//$desc    router for getting Developer's posts.
+//@access  private
+
+
 
 
 
